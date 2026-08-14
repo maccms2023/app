@@ -1,0 +1,87 @@
+<!doctype html>
+<!--
+  文件: debug_index.html
+  说明: 这是一个调试/测试版的页面，默认不会自动跳转。页面提供输入框来填写目标 URL，并有“执行跳转”和“运行脚本”两种方式。
+  使用方法:
+    - 通过 jsDelivr 访问（公网）：https://cdn.jsdelivr.net/gh/maccms2023/app@main/debug_index.html
+    - 本地运行：git clone ... -> python3 -m http.server 8000 -> http://localhost:8000/debug_index.html
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Debug 页面 - 手动执行跳转/脚本</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input[type="text"] { width: 80%; padding: 6px; }
+    button { padding: 6px 12px; margin-left: 6px; }
+    pre { background:#f6f8fa; padding:10px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <h1>Debug 页面 - 手动执行跳转/脚本</h1>
+  <p>这是一个调试用页面，页面默认<strong>不会</strong>自动跳转。你可以在下面填写目标 URL，然后点击按钮执行跳转或运行页面内脚本。</p>
+
+  <label for="target">目标 URL（必须以 http:// 或 https:// 开头）</label><br>
+  <input id="target" type="text" value="https://www.baidu.com/" />
+  <button id="goReplace">执行 location.replace()</button>
+  <button id="openNew">在新标签打开</button>
+  <button id="runScript">运行原页面的脚本逻辑（校验并跳转）</button>
+
+  <h2>当前查询字符串</h2>
+  <pre id="qs">--</pre>
+
+  <h2>说明</h2>
+  <ul>
+    <li>如果你希望页面自动跳转，请访问仓库的 <code>index.html</code>（当前会在加载时自动跳转）。</li>
+    <li>在本页面点击“运行脚本”会执行与 index.html 中相同的 JS 校验与跳转逻辑，但先不会改变浏览器历史（除非你用 location.replace）。</li>
+    <li>要通过 CDN 访问（公网测试）：
+      <a href="https://cdn.jsdelivr.net/gh/maccms2023/app@main/debug_index.html" target="_blank">https://cdn.jsdelivr.net/gh/maccms2023/app@main/debug_index.html</a>
+    </li>
+  </ul>
+
+  <script>
+    (function(){
+      var qsEl = document.getElementById('qs');
+      qsEl.textContent = location.search || '(空)';
+
+      function sanitizeTarget(raw) {
+        try {
+          if (!raw) return null;
+          raw = raw.trim();
+          if (!/^https?:\/\//i.test(raw)) return null;
+          return raw;
+        } catch (e) { return null; }
+      }
+
+      document.getElementById('goReplace').addEventListener('click', function(){
+        var target = sanitizeTarget(document.getElementById('target').value) || location.origin + '/';
+        // 使用 replace 不会留下浏览历史记录
+        location.replace(target);
+      });
+
+      document.getElementById('openNew').addEventListener('click', function(){
+        var target = sanitizeTarget(document.getElementById('target').value) || location.origin + '/';
+        window.open(target, '_blank');
+      });
+
+      // 复刻 index.html 中的自动跳转逻辑，但不自动执行，只有点击才执行
+      document.getElementById('runScript').addEventListener('click', function(){
+        try {
+          var defaultTarget = 'https://www.baidu.com/';
+          var params = new URLSearchParams(location.search);
+          var target = params.get('to') || document.getElementById('target').value || defaultTarget;
+          if (!/^https?:\/\//i.test(target)) target = defaultTarget;
+          // 这里选择直接替换历史
+          location.replace(target);
+        } catch (e) {
+          console.error(e);
+          alert('脚本执行出错，请查看控制台');
+        }
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
