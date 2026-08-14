@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TV 示例页</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .channels { display:flex; gap:10px; margin:12px 0; }
+    .channel { padding:10px 16px; background:#0070f3; color:white; border-radius:6px; cursor:pointer; }
+    .actions { margin-top:16px; }
+    input[type="text"]{ padding:8px; width:60%; }
+  </style>
+</head>
+<body>
+  <h1>TV 页面示例 (tv.html)</h1>
+  <p>这个页面展示了多种跳转方式：使用普通链接、JS 改变 location、在新窗口打开、使用 replace（替换历史）、以及返回上一页。</p>
+
+  <h2>示例频道（点击按钮跳转）</h2>
+  <div class="channels">
+    <div class="channel" onclick="goTo('channel1.html')">频道 1（channel1.html）</div>
+    <div class="channel" onclick="goTo('channel2.html')">频道 2（channel2.html）</div>
+    <div class="channel" onclick="goTo('https://example.com')">外部站点（example.com）</div>
+  </div>
+
+  <h2>链接示例</h2>
+  <ul>
+    <li><a href="channel1.html">普通链接到 channel1.html</a></li>
+    <li><a href="channel2.html" target="_blank" rel="noopener">在新标签打开 channel2.html</a></li>
+  </ul>
+
+  <div class="actions">
+    <label>输入任意 URL（相对或绝对）：</label>
+    <br />
+    <input id="urlInput" type="text" placeholder="例如 channel1.html 或 https://example.com" />
+    <button onclick="goFromInput()">跳转</button>
+    <button onclick="openNew()">在新窗口打开</button>
+    <button onclick="replaceFromInput()">replace 跳转（替换历史）</button>
+    <button onclick="goBack()">后退（history.back）</button>
+  </div>
+
+  <script>
+    function goTo(url) {
+      // 演示：直接改变 location.href
+      console.log('goTo:', url);
+      window.location.href = url;
+    }
+
+    function goFromInput() {
+      const v = document.getElementById('urlInput').value.trim();
+      if (!v) { alert('请先输入 URL'); return; }
+      // 如果是相对路径或绝对 URL 都可以
+      window.location.href = v;
+    }
+
+    function openNew() {
+      const v = document.getElementById('urlInput').value.trim();
+      if (!v) { alert('请先输入 URL'); return; }
+      window.open(v, '_blank', 'noopener');
+    }
+
+    function replaceFromInput() {
+      const v = document.getElementById('urlInput').value.trim();
+      if (!v) { alert('请先输入 URL'); return; }
+      // 使用 replace 不会在浏览历史中留下当前页
+      window.location.replace(v);
+    }
+
+    function goBack(){
+      // 如果没有历史则跳到根页面
+      if (history.length > 1) history.back();
+      else window.location.href = '/';
+    }
+
+    // 当页面被载入时，若地址有查询参数 ?chan=channel1，会自动跳转到对应页面（示范用途）
+    (function autoJumpFromQuery(){
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const chan = params.get('chan');
+        if (chan) {
+          // 防止滥用，仅允许字母数字和点、短横、下划线
+          if (/^[\w.\-\/]+$/.test(chan)) {
+            console.log('auto jump to', chan);
+            // 延迟 300ms，给用户看到提示
+            setTimeout(()=> window.location.href = chan, 300);
+          }
+        }
+      } catch (e) {
+        console.warn(e);
+      }
+    })();
+  </script>
+</body>
+</html>
