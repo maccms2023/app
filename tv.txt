@@ -12,8 +12,17 @@
   ],
   "sites": [
     {
+  "key": "1ix99",
+      "name": "4K|官网ix99.vip",
+      "type": 1,
+      "api": "https://888kk.4kmm.top//api.php/provide/vod/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+    {
       "key": "91麻豆",
-      "name": "官方网站ix99.vip",
+      "name": "麻豆视频",
       "type": 1,
       "api": "https://19q.cc/api.php/provide/vod/",
       "searchable": 1,
@@ -41,15 +50,7 @@
       }
     },
     {
-      "key": "1ix99",
-      "name": "4K|官网ix99.vip",
-      "type": 1,
-      "api": "https://44kk.4kmm.top/api.php/provide/vod/",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0
-    },
-    {
+    
          "key": "XMVideo",
       "name": "熊猫视频",
       "type": 3,
@@ -60,7 +61,7 @@
     },
     {
       "key": "csp_xbpq_s直播",
-      "name": "StripChat[直播][免翻]",
+      "name": "成人[直播]",
       "type": 3,
       "api": "csp_XBPQ",
       "searchable": 0,
@@ -74,7 +75,7 @@
     },
     {
       "key": "csp_xbpq_s直播带票",
-      "name": "🎫StripChat[直播][免翻]",
+      "name": "🎫成人[直播][免翻]",
       "type": 3,
       "api": "csp_XBPQ",
       "searchable": 0,
