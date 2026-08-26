@@ -12,6 +12,20 @@
   ],
   "sites" : [
     {
+      "key" : "csp_xbpq_s直播",
+      "name" : "成人[直播]ix99.vip",
+      "type" : 3,
+      "api" : "csp_XBPQ",
+      "searchable" : 0,
+      "quickSearch" : 0,
+      "filterable" : 0,
+      "ext" : "https://gh-proxy.org/https://raw.githubusercontent.com/wanganni/yinshiyuan/main/tv/xbpq/StripChat直播xbpq.json",
+      "style" : {
+        "type" : "rect",
+        "ratio" : 1.65
+      }
+    },
+    {
        "key" : "drpy_ebay直播",
       "name" : "美女直播",
       "type" : 3,
@@ -51,20 +65,7 @@
       "jar" : "https://gh-proxy.org/https://github.com/maccms2023/app/raw/refs/heads/main/182.jar"
     },
     {
-      "key" : "csp_xbpq_s直播",
-      "name" : "成人[直播]",
-      "type" : 3,
-      "api" : "csp_XBPQ",
-      "searchable" : 0,
-      "quickSearch" : 0,
-      "filterable" : 0,
-      "ext" : "https://gh-proxy.org/https://raw.githubusercontent.com/wanganni/yinshiyuan/main/tv/xbpq/StripChat直播xbpq.json",
-      "style" : {
-        "type" : "rect",
-        "ratio" : 1.65
-      }
-    },
-    {
+
       "key" : "csp_xbpq_s直播带票",
       "name" : "🎫成人[直播][免翻]",
       "type" : 3,
