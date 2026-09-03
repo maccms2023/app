@@ -4,7 +4,7 @@
     {
       "name" : "IPv4",
       "type" : 0,
-      "url" : "https://cdn.jsdelivr.net/gh/maccms2023/ix99vip@refs/heads/main/zp/tvlive.txt",
+      "url" : "https://gh-proxy.org/https://raw.githubusercontent.com/maccms2023/ix99vip/refs/heads/main/box/live.txt",
       "ua" : "okhttp/3.12.13",
       "epg" : "http://epg.112114.xyz/?ch={name}&date={date}",
       "logo" : "https://epg.112114.xyz/logo/{name}.png"
