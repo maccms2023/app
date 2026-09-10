@@ -1,16 +1,9 @@
-
 {
-    "domains":[
-
-        "https://hehuaaluminum.com/static/admin_profile/index.php",
-               "http://cms.060718.xyz/upload/user/",
-
-
-                  "https://90.sd337.cc/extend/api/",
-
-        "https://rirarkstore.epizy.com/wp-content/uploads/index.php",
-
-        "https://digitalmahipal.infy.uk/wp-content/uploads/index.php"
-
-    ]
+ "domains":[
+ "https://hehuaaluminum.com/static/admin_profile/index.php",
+ "http://cms.060718.xyz/upload/user/",
+"https://rirarkstore.epizy.com/wp-content/uploads/index.php",
+"https://digitalmahipal.infy.uk/wp-content/uploads/index.php",
+ "https://90.sd337.cc/extend/api/"
+ ]
 }
