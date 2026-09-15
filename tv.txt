@@ -12,6 +12,24 @@
   ],
   "sites" : [
     {
+  "key" : "高清",
+      "name" : "高清视频|官网ix99.top",
+      "type" : 1,
+      "api" : "https://2.98ys.vip/api.php/provide/vod/?ac=list",
+      "searchable" : 1,
+      "quickSearch" : 1,
+      "filterable" : 0
+    },
+    {
+  "key" : "小辣椒",
+      "name" : "小辣椒视频",
+      "type" : 1,
+      "api" : "https://api.xjzyapi.com/provide/vod",
+      "searchable" : 1,
+      "quickSearch" : 1,
+      "filterable" : 0
+    },
+    {
       "key" : "csp_xbpq_s直播",
       "name" : "成人[直播]ix99.vip",
       "type" : 3,
