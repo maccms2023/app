@@ -1,5 +1,5 @@
 {
-  "spider" : "0",
+  "spider" : "http://www.hehuaaluminum.com/static/upload/image/20250522/xbpqxyq.jar",
   "lives" : [
     {
       "name" : "IPv4",
