@@ -1,5 +1,5 @@
 {
-  "spider" : "https://gh-proxy.org/https://raw.githubusercontent.com/wanganni/yinshiyuan/main/jar/xbpqxyq.jar",
+  "spider" : "0",
   "lives" : [
     {
       "name" : "IPv4",
