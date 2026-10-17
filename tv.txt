@@ -13,7 +13,7 @@
   "sites": [
     {
       "key": "91麻豆",
-      "name": "🔞麻豆视频",
+      "name": "🔞麻豆视频|小草口令44XC",
       "type": 1,
       "api": "https://19q.cc/api.php/provide/vod/",
       "searchable": 1,
